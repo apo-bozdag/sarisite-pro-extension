@@ -86,7 +86,7 @@ async function allAdsConf() {
                 const br_element = document.createElement('br');
                 const has_element = item.querySelector('td.' + extra_element_names[extra_element_name].append);
                 if (has_element) {
-                  has_element.prepend(br_element);
+                  has_element.append(br_element);
                 }
 
                 const extra_element = document.createElement('span');
