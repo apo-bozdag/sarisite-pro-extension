@@ -12,7 +12,7 @@ function is_damage(description) {
     '(agir hasar) kayit', 'agir kayit vardir', 'agir hasar olusmus',
     'agir hazar kaydi var', 'agir hasar kaydi var', 'agir hasarli',
     'agi̇r hasar kaydi̇ vardi̇r', 'agir hasarlidir', 'agi̇r hasarli', 'sisirme agir',
-    'hasarli agir', 'agir hasar kaydi gelmekte'
+    'hasarli agir', 'agir hasar kaydi gelmekte', 'bedelsiz agir'
   ]
   const light_damage = [
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
@@ -42,7 +42,7 @@ function is_damage(description) {
     'parca halinde', 'parca hali̇nde', 'parca parca kayit', 'hasar kaydi :', 'bin tramer',
     'tl tramer', 'tramer\\d+(\\.\\d+)*', 'hasar sorgusu resimlerde',
     'tramer = \\d+(\\.\\d+)*', 'tramer =\\d+(\\.\\d+)*', 'tramer = \\d+(\\.\\d+)*',
-    'tramer=\\d+(\\.\\d+)*', 'tramer= \\d+(\\.\\d+)*'
+    'tramer=\\d+(\\.\\d+)*', 'tramer= \\d+(\\.\\d+)*', 'hasar kaydi ise', ''
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
