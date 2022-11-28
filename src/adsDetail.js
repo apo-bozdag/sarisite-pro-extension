@@ -11,7 +11,8 @@ function is_damage(description) {
     'agir hasarli', 'agir hasar kayitli', 'agir hasar cikmaktadir',
     '(agir hasar) kayit', 'agir kayit vardir', 'agir hasar olusmus',
     'agir hazar kaydi var', 'agir hasar kaydi var', 'agir hasarli',
-    'agi̇r hasar kaydi̇ vardi̇r'
+    'agi̇r hasar kaydi̇ vardi̇r', 'agir hasarlidir', 'agi̇r hasarli', 'sisirme agir',
+    'hasarli agir', 'agir hasar kaydi gelmekte'
   ]
   const light_damage = [
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
@@ -27,7 +28,19 @@ function is_damage(description) {
     'tramer vardir', 'parca parca tramer kaydi', 'parca parca tramer',
     'parca parca hasar kaydi', 'parca parca hasar', 'parca parca hasar kaydi',
     'tramer \\d+(\\.\\d+)*', 'hasar kaydi \\d+(\\.\\d+)*', 'parca parca \\d+(\\.\\d+)*',
-    'tek parca', 'tek parca \\d+(\\.\\d+)*'
+    'tek parca', 'tek parca \\d+(\\.\\d+)*', 'tramer kaydi:', 'hasar bulunmakta',
+    'erp carpma', 'carpisma', 'hasar sorgulamasi resimlerde', 'tramer kaydi:',
+    'hasar sorgulamasi resi̇mlerde', 'hasar kaydi sorgulamasi fotograflarda',
+    'son tramer kaydi', 'tramer kaydi : \\d+(\\.\\d+)*', '\\d+(\\.\\d+)* tramer var',
+    '\\d+(\\.\\d+)* tramer kaydi', 'tramer:\\d+(\\.\\d+)*', 'tramer: \\d+(\\.\\d+)*',
+    'tramer : \\d+(\\.\\d+)*', 'tramer ve ekspertiz bilgileri', 'tramer mevcuttur',
+    'tarihli hasar', 'agir hasar kaydi yoktur', 'agir hasar yoktur', 'agi̇r hasar yoktur',
+    'normal kayit', 'normal kayit vardir', 'hasar kayitli aldim', 'carpma \\d+(\\.\\d+)*',
+    'hasar kaydi resi̇mlerde', 'tramer sorgusu resimlerde', 'carpma kaydi', 'trameri vardir',
+    'tramer cikmaktadir', 'tramer kaydi parca', 'tramer kaydi parca parca',
+    'hasar kaydi: \\d+(\\.\\d+)*', 'hasar kaydi : \\d+(\\.\\d+)*', 'hasar kaydi :\\d+(\\.\\d+)*',
+    'parca halinde', 'parca hali̇nde', 'parca parca kayit', 'hasar kaydi :', 'bin tramer',
+    'tl tramer', 'tramer\\d+(\\.\\d+)*'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
@@ -204,6 +217,7 @@ export async function adsDetail(content) {
     if (value && element.name === 'description') {
       value = value.replace(/(\r\n|\n|\r)/gm, ' ');
       value = value.replace(/\s+/g, ' ');
+      value = value.replace(/\([^)]*\)/g, '');
       value = value.toLowerCase();
 
       const turkish = 'çğıöşüÇĞİÖŞÜ';
