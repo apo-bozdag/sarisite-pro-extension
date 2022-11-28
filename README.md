@@ -14,6 +14,7 @@ Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 - [ ] Options sayfasinda baktigin ilanlarin listesi
 - [ ] Options sayfasinda cache silme
 - [ ] Ilan detayina yorum yap alani gelmesi
+- [ ] Ilan listesinde request araliginin ayarlardan degistirilebilmesi
 
 ## Install
 
