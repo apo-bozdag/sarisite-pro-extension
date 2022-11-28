@@ -1,4 +1,4 @@
-# <img src="public/icons/icon-48.png" width="45" align="left"> Sahibinden Pro
+# <img src="public/icons/icon-48.png" width="45" align="left"> Sahibinden Pro Extension
 
 Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 
