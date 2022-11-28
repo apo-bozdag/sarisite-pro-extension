@@ -8,9 +8,12 @@ Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 - [x] Baktigim ilanlari gizle ozelligi
 - [x] Ilan listesinde: hasar kaydi, boya, yakiti ve vites tipi eklendi
 - [x] Ilan detayinda WhatsApp ve Telegram ile mesaj gonderme
+- [ ] Ilan listesine hasar kaydi, boya olan olmayan filtresi
 - [ ] Ilan listesinde ajax alagilayip otomatik olarak listede guncelleme yapmasi
 - [ ] Options sayfasinda engelledigin magazalari gorme ve kaldirma
 - [ ] Options sayfasinda baktigin ilanlarin listesi
+- [ ] Options sayfasinda cache silme
+- [ ] Ilan detayina yorum yap alani gelmesi
 
 ## Install
 
