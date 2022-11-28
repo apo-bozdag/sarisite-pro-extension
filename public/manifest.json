@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Sahibinden Pro",
+  "version": "0.1.0",
+  "description": "Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.",
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Sahibinden Pro",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage", "tabGroups"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://sahibinden.com/*",
+        "https://*.sahibinden.com/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ]
+}
