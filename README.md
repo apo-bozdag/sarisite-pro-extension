@@ -4,9 +4,13 @@ Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 
 ## Features
 
-[x] Magaza engelleme (o magazanin ilanlarini gormezsin)
-[x] Baktigim ilanlari gizle ozelligi
-[x] Ilan listesinde: hasar kaydi, boya, yakiti ve vites tipi eklendi
+- [x] Magaza engelleme (o magazanin ilanlarini gormezsin)
+- [x] Baktigim ilanlari gizle ozelligi
+- [x] Ilan listesinde: hasar kaydi, boya, yakiti ve vites tipi eklendi
+- [x] Ilan detayinda WhatsApp ve Telegram ile mesaj gonderme
+- [ ] Ilan listesinde ajax alagilayip otomatik olarak listede guncelleme yapmasi
+- [ ] Options sayfasinda engelledigin magazalari gorme ve kaldirma
+- [ ] Options sayfasinda baktigin ilanlarin listesi
 
 ## Install
 
