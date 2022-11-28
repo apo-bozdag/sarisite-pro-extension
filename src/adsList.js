@@ -84,7 +84,10 @@ async function allAdsConf() {
             for (const extra_element_name in extra_element_names) {
               if (get_ads[extra_element_names[extra_element_name].name]) {
                 const br_element = document.createElement('br');
-                item.querySelector('td.' + extra_element_names[extra_element_name].append).appendChild(br_element);
+                const has_element = item.querySelector('td.' + extra_element_names[extra_element_name].append);
+                if (has_element) {
+                  has_element.prepend(br_element);
+                }
 
                 const extra_element = document.createElement('span');
                 extra_element.setAttribute('class', 'spro_' + extra_element_name);
@@ -94,7 +97,9 @@ async function allAdsConf() {
                   extra_element.style.color = '#fff';
                   extra_element.style.textShadow = '0 0 1px #000';
                 }
-                item.querySelector('td.' + extra_element_names[extra_element_name].append).appendChild(extra_element);
+                if (has_element) {
+                  has_element.prepend(extra_element);
+                }
               }
             }
 

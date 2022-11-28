@@ -11,10 +11,10 @@ const path = window.location.pathname;
 const is_ads = path.indexOf("/ilan/") > -1;
 const is_eng_page = path.indexOf("/listing/") > -1 || path.indexOf("/en/") > -1;
 let is_car_ads_list = false;
-let category_breadcrumb = document.querySelectorAll('div.search-result-bc ul li');
+let category_breadcrumb = document.querySelectorAll('div.search-result-bc ul li a');
 if (category_breadcrumb.length > 0) {
   category_breadcrumb.forEach((item) => {
-    if (item.innerText.toLowerCase().indexOf('otomobil') > -1) {
+    if (item.href.indexOf('vasita') > -1) {
       is_car_ads_list = true;
       return false;
     }

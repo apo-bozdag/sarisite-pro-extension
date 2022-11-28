@@ -14,6 +14,13 @@ export function custom_style() {
       item.remove();
     });
   }
+  // ilan listesi arasindaki uyarilari silelim
+  const promoTopList = document.querySelectorAll('.searchResultsPromoToplist');
+  if (promoTopList) {
+    promoTopList.forEach((item) => {
+      item.remove();
+    });
+  }
 }
 
 export function open_settings() {
