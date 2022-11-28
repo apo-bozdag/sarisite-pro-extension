@@ -163,7 +163,7 @@ async function block_store(store_username) {
   document.querySelector('.store_block_msg').style.display = 'block';
 }
 
-export async function adsDetail(content) {
+export async function adDetail(content) {
   const ads_model = {};
 
   const parser = new DOMParser();
@@ -271,7 +271,7 @@ export async function adsDetail(content) {
 }
 
 export async function ads_page() {
-  const get_ads = await adsDetail(document.documentElement.innerHTML);
+  const get_ads = await adDetail(document.documentElement.innerHTML);
   const ads_phone = get_ads['advertiser_phone'];
   const advertiser_store_username = get_ads['advertiser_store_username'];
 

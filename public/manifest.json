@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Sahibinden Pro",
+  "name": "Sarı Site Pro",
   "version": "0.1.0",
   "description": "Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.",
   "options_page": "options.html",
@@ -14,7 +14,7 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Sahibinden Pro",
+    "default_title": "sarı Site Pro",
     "default_popup": "popup.html"
   },
   "permissions": [

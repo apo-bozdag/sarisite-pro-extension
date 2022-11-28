@@ -1,7 +1,7 @@
 'use strict';
 
 import {ads, blocked_store, options} from "./storage";
-import {ads_page} from "./adsDetail";
+import {ads_page} from "./adDetail";
 import {custom_style} from "./helpers";
 import {ads_list_page, makeHide} from "./adsList";
 import {filter} from "rxjs";
@@ -53,8 +53,8 @@ init();
 options.changeStream
   .pipe(filter((hideAds) => !!hideAds))
   .subscribe(({hideAds}) => {
-    console.log('sahibinden pro - old value', hideAds.oldValue)
-    console.log('sahibinden pro - new value', hideAds.newValue)
+    console.log('sarı site pro - old value', hideAds.oldValue)
+    console.log('sarı site pro - new value', hideAds.newValue)
     // is ads list page
     if (is_car_ads_list) {
       // noinspection JSIgnoredPromiseFromCall
@@ -64,13 +64,13 @@ options.changeStream
 
 // Listen all changes
 options.valueStream.subscribe((values) => {
-  console.log('sahibinden pro - options', values)
+  console.log('sarı site - options', values)
 })
 ads.valueStream.subscribe((values) => {
-  console.log('sahibinden pro - ads', values)
+  console.log('sarı site - ads', values)
 })
 blocked_store.valueStream.subscribe((values) => {
-  console.log('sahibinden pro - blocked_store', values)
+  console.log('sarı site - blocked_store', values)
   // is ads list page
   if (is_car_ads_list) {
     // noinspection JSIgnoredPromiseFromCall

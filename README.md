@@ -25,7 +25,7 @@ Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 5. Click on the Load unpacked extension button
 6. Select the folder `sahibinden-pro/build`
 
-[**Chrome** extension](https://chrome.google.com/webstore/detail/sahibinden-pro/)
+[**Chrome** extension](https://chrome.google.com/webstore/detail/sari-site-pro/)
 
 ## Contribution
 

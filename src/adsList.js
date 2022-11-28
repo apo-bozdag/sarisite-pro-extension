@@ -6,7 +6,7 @@ import {
   options,
   options_enum
 } from "./storage";
-import {adsDetail} from "./adsDetail";
+import {adDetail} from "./adDetail";
 
 const hideAds = options_enum.hideAds;
 
@@ -34,7 +34,7 @@ async function allAdsConf() {
               .then(response => response.text())
               .then(async data => {
                 console.log('data kayit ediliyor');
-                get_ads = await adsDetail(data);
+                get_ads = await adDetail(data);
               }).catch(err => {
                 console.log(err);
               })
