@@ -30,13 +30,6 @@ async function allAdsConf() {
 
           if (!get_ads && href) {
             const url = `https://www.sahibinden.com${href}`;
-            // jQuery.ajax({
-            //   url: adr,
-            //   dataType:'text',
-            //   success: function (data) {
-            //     getirData(data,i) ;
-            //   }
-            // }); to js
             await fetch(url)
               .then(response => response.text())
               .then(async data => {
