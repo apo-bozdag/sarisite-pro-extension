@@ -18,7 +18,7 @@ Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 ## Install
 
 1. Run `npm install`
-2. Run `npm run watch`
+2. if you are going to develop run `npm run watch` else run `npm run build`
 3. Open `chrome://extensions`
 4. Check the Developer mode checkbox
 5. Click on the Load unpacked extension button
