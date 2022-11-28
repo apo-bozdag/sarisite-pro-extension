@@ -51,6 +51,22 @@ async function allAdsConf() {
           if (get_ads) {
             item.setAttribute('data-store_name', get_ads.advertiser_store_username);
 
+            if (get_ads['advertiser_store_name']) {
+              const store_name = document.createElement('span');
+              store_name.classList.add('store_name');
+              store_name.innerText = get_ads['advertiser_store_name'];
+              const br = document.createElement('br');
+              item.querySelector('td.searchResultsTitleValue').prepend(br);
+              item.querySelector('td.searchResultsTitleValue').prepend(store_name);
+            }else if (get_ads['advertiser_name']) {
+              const advertiser_name = document.createElement('span');
+              advertiser_name.classList.add('advertiser_name');
+              advertiser_name.innerText = get_ads['advertiser_name'];
+              const br = document.createElement('br');
+              item.querySelector('td.searchResultsTitleValue').prepend(br);
+              item.querySelector('td.searchResultsTitleValue').prepend(advertiser_name);
+            }
+
             const extra_element_names = {
               'damage': {
                 'name': 'damage',
