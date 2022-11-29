@@ -147,7 +147,7 @@ export async function adDetail(content) {
   if (json) {
     const data = JSON.parse(json.getAttribute('data-json'));
     const dmpData = data['dmpData'];
-    const getNameKeys = ['yakit', 'vites', 'kasa', 'renk', 'km', 'yil'];
+    const getNameKeys = ['yakit', 'vites', 'kasa', 'renk', 'km', 'yil', 'motor_gucu'];
     const translateKeys = {
       'yakit': 'fuel',
       'vites': 'gear',
@@ -155,10 +155,11 @@ export async function adDetail(content) {
       'renk': 'color',
       'km': 'km',
       'yil': 'year',
+      'motor_gucu': 'engine_power'
     }
     dmpData.forEach(element => {
       if (getNameKeys.includes(element['name'])) {
-        ads_model[translateKeys[element['name']]] = element['value'].replace('-', ' ').trim();
+        ads_model[translateKeys[element['name']]] = element['value'].replace('-', ' ').replace('_', '-').trim();
       }
     });
   }

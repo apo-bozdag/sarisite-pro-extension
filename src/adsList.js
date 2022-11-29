@@ -75,13 +75,13 @@ async function allAdsConf() {
                 'is_show': damage_type > 0,
                 'text': damage_text,
                 'class': `spro-${damage_class}`,
-                'append': 'searchResultsTitleValue'
+                'html_tag': 'searchResultsTitleValue'
               },
               {
                 'is_show': painted,
                 'text': painted_text,
                 'class': `spro-${painted_class}`,
-                'append': 'searchResultsTitleValue'
+                'html_tag': 'searchResultsTitleValue'
               }
             ];
 
@@ -92,26 +92,31 @@ async function allAdsConf() {
                 label.classList.add(label_element.class);
                 label.innerText = label_element.text;
                 const br = document.createElement('br');
-                item.querySelector(`td.${label_element.append}`).append(br);
-                item.querySelector(`td.${label_element.append}`).append(label);
+                item.querySelector(`td.${label_element.html_tag}`).append(br);
+                item.querySelector(`td.${label_element.html_tag}`).append(label);
               }
             }
 
             const extra_element_names = {
               'gear': {
                 'name': 'gear',
-                'append': 'searchResultsTagAttributeValue'
+                'html_tag': 'searchResultsTagAttributeValue'
               },
               'fuel': {
                 'name': 'fuel',
-                'append': 'searchResultsTagAttributeValue'
+                'html_tag': 'searchResultsTagAttributeValue'
+              },
+              'engine_power': {
+                'name': 'engine_power',
+                'html_tag': 'searchResultsTagAttributeValue',
+                'text': 'HP'
               }
             }
 
             for (const extra_element_name in extra_element_names) {
               if (get_ads[extra_element_names[extra_element_name].name]) {
                 const br_element = document.createElement('br');
-                const has_element = item.querySelector('td.' + extra_element_names[extra_element_name].append);
+                const has_element = item.querySelector('td.' + extra_element_names[extra_element_name].html_tag);
                 if (has_element) {
                   has_element.append(br_element);
                 }
@@ -119,6 +124,9 @@ async function allAdsConf() {
                 const extra_element = document.createElement('span');
                 extra_element.setAttribute('class', 'spro-' + extra_element_name);
                 extra_element.innerText = get_ads[extra_element_names[extra_element_name].name];
+                if (extra_element_names[extra_element_name].text) {
+                  extra_element.innerText += ' ' + extra_element_names[extra_element_name].text;
+                }
                 if (has_element) {
                   has_element.append(extra_element);
                 }
