@@ -43,7 +43,7 @@ function is_damage(description) {
     'tl tramer', 'tramer\\d+(\\.\\d+)*', 'hasar sorgusu resimlerde',
     'tramer = \\d+(\\.\\d+)*', 'tramer =\\d+(\\.\\d+)*', 'tramer = \\d+(\\.\\d+)*',
     'tramer=\\d+(\\.\\d+)*', 'tramer= \\d+(\\.\\d+)*', 'hasar kaydi ise', 'hasar kaydi yalnizca',
-    'adet carpma'
+    'adet carpma', '\\d+(\\.\\d+)* hasar kaydi', '\\d+(\\.\\d+)*hasar kaydi'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
@@ -221,6 +221,7 @@ export async function adDetail(content) {
       value = value.replace(/(\r\n|\n|\r)/gm, ' ');
       value = value.replace(/\s+/g, ' ');
       value = value.replace(/\([^)]*\)/g, '');
+      value = value.replace(/₺|tl|ytl/gi, '');
       value = value.toLowerCase();
 
       const turkish = 'çğıöşüÇĞİÖŞÜ';
