@@ -10,3 +10,5 @@
 .DS_Store
 
 npm-debug.log*
+build.zip
+.idea
