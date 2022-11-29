@@ -15,6 +15,7 @@ Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 - [ ] Options sayfasinda cache silme
 - [ ] Ilan detayina yorum yap alani gelmesi
 - [ ] Ilan listesinde request araliginin ayarlardan degistirilebilmesi
+- [ ] Seçilen filtreye gören çıkacak olan bütün ilanların fiyatlarının ortalamasını gösterme
 
 ## Install
 
