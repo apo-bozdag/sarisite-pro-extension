@@ -25,16 +25,17 @@ export function is_damage(description) {
     'agir hasar kaydi \\d+(\\.\\d+)*', 'erp-agir hasarli', 'agir hasar kaydi cikmaktadir',
     'kaporta hasarindan dolayi agir hasar vardir', 'aracimin pert kaydi vardir',
     'arac pert kayitli ', ' hasar kayitlidir', 'aracta pert kaydi mevcuttur',
-    'az hasarli, calisir', 'arac pert kayitliymis', 'pert kaydi vardir',
+    'az hasarli, calisir', 'arac pert kayitliymis', 'pert kaydi var',
     'agir hasarli', 'agir hasar kayitli', 'agir hasar cikmaktadir',
     '(agir hasar) kayit', 'agir kayit vardir', 'agir hasar olusmus',
     'agir hazar kaydi var', 'agir hasar kaydi var', 'agir hasarli',
     'agi̇r hasar kaydi̇ vardi̇r', 'agir hasarlidir', 'agi̇r hasarli', 'sisirme agir',
     'hasarli agir', 'agir hasar kaydi gelmekte', 'bedelsiz agir',
-    'agir hasar kayitlidir', 'agir hasar var', 'agir hasar kay',
+    'agir hasar kayitlidir', 'agir hasar var',
     'agir hasar gozukuyor', 'bedelsiz agir',
     'airbag acmis', 'airbag acildi', 'airbag patla', 'hasar kaydi agir hasar',
-    'agir kayitli', 'ag.*r hasar kay.*t', '\\d+(\\.\\d+)* agir hasar', 'agir hasar \\d+(\\.\\d+)*'
+    'agir kayitli', 'ag[A-Za-z]+r hasar kay[A-Za-z]+t',
+    '\\d+(\\.\\d+)* agir hasar', 'agir hasar \\d+(\\.\\d+)*'
   ]
   const light_damage = [
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
@@ -69,10 +70,11 @@ export function is_damage(description) {
     'bin kayit', '\\d+(\\.\\d+)* tremer', 'tremer \\d+(\\.\\d+)*', '\\d+(\\.\\d+)*tremer',
     'hasar:', 'hasar kaydi ekliyorum', 'tramer \\d+(\\.\\d+)*',
     'kaydi \\d+(\\.\\d+)*', 'kaydi :\\d+(\\.\\d+)*', 'kaydi: \\d+(\\.\\d+)*',
-    'kaydi:\\d+(\\.\\d+)*', 'kayit vardir', 'tramer (.*) tl', 'tramer; \\d+(\\.\\d+)*',
+    'kaydi:\\d+(\\.\\d+)*', 'kayit vardir', 'tramer; \\d+(\\.\\d+)*',
     'tramer;\\d+(\\.\\d+)*', 'pert kaydi yoktur', 'tremer kaydi var',
     'hasar sms', 'hasar resim', 'hasar sorgulama fot', 'hasar fot', 'tramer kaydi sadece',
-    'tramer resimlerde', '\\d+(\\.\\d+)*tramer', 'tirameri var', 'ramer kaydi resim'
+    'tramer resimlerde', '\\d+(\\.\\d+)*tramer', 'tirameri var', 'ramer kaydi resim',
+    'lira tramer'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
@@ -96,7 +98,8 @@ export function is_painted(description) {
     'lokal boyali aracimiz', 'lokal', 'cizik boyasi', 'boyasi vardir', 'parca boya',
     'boyali\\d+(\\.\\d+)*', 'boyali \\d+(\\.\\d+)*',
     'alti boya', 'boyasi mevcut', 'boya var', 'boyanmistir', 'boya vr', 'boya takintisi',
-    'boya mevcut', 'temizlik boyasi', 'boyalari var'
+    'boya mevcut', 'temizlik boyasi', 'boyalari var',
+    '\\d+(\\.\\d+)* boya'
   ]
 
   const painted_regex = new RegExp(painted.join('|'), 'i');

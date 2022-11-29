@@ -62,6 +62,9 @@ async function allAdsConf() {
 
             const ad_content = get_ads['title'] + ' ' + get_ads['description'];
             const format_content = reformattedContent(ad_content);
+            if (get_ads['id']=='1062111339'){
+              console.log('format_content', format_content);
+            }
             const damage_type = is_damage(format_content);
             const damage_class = damage_type === 0 ? 'no-damage' : damage_type === 1 ? 'severe-damage' : 'light-damage';
             const damage_text = damage_type === 0 ? 'Hasarsız' : damage_type === 1 ? 'Ağır hasar kaydı var' : 'Hasar kaydı var';
