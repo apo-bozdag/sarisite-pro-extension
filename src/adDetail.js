@@ -66,7 +66,7 @@ function is_painted(description) {
   const painted = [
     'boyali', 'boyali arac', 'boyali aracimiz', 'boyali aracimizdir',
     '\\d+(\\.\\d+)* parca boyali', 'lokal boyali', 'lokal boyali arac',
-    'lokal boyali aracimiz', 'lokal', 'cizik boyasi', 'boyasi vardir'
+    'lokal boyali aracimiz', 'lokal', 'cizik boyasi', 'boyasi vardir', 'parca boya'
   ]
 
   const painted_regex = new RegExp(painted.join('|'), 'i');
