@@ -13,7 +13,8 @@ function is_damage(description) {
     'agir hazar kaydi var', 'agir hasar kaydi var', 'agir hasarli',
     'agi̇r hasar kaydi̇ vardi̇r', 'agir hasarlidir', 'agi̇r hasarli', 'sisirme agir',
     'hasarli agir', 'agir hasar kaydi gelmekte', 'bedelsiz agir',
-    'agir hasar kayitlidir', 'agir hasar var', 'agir hasar kay'
+    'agir hasar kayitlidir', 'agir hasar var', 'agir hasar kay',
+    'agir hasar gozukuyor'
   ]
   const light_damage = [
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
@@ -45,7 +46,9 @@ function is_damage(description) {
     'tramer = \\d+(\\.\\d+)*', 'tramer =\\d+(\\.\\d+)*', 'tramer = \\d+(\\.\\d+)*',
     'tramer=\\d+(\\.\\d+)*', 'tramer= \\d+(\\.\\d+)*', 'hasar kaydi ise', 'hasar kaydi yalnizca',
     'adet carpma', '\\d+(\\.\\d+)* hasar kaydi', '\\d+(\\.\\d+)*hasar kaydi', 'kayit parca',
-    'bin kayit'
+    'bin kayit', '\\d+(\\.\\d+)* tremer', 'tremer \\d+(\\.\\d+)*', '\\d+(\\.\\d+)*tremer',
+    'hasar:', 'hasar kaydi ekliyorum', 'tramer \\d+(\\.\\d+)*',
+    'kaydi \\d+(\\.\\d+)*',
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
@@ -70,7 +73,7 @@ function is_painted(description) {
     '\\d+(\\.\\d+)* parca boyali', 'lokal boyali', 'lokal boyali arac',
     'lokal boyali aracimiz', 'lokal', 'cizik boyasi', 'boyasi vardir', 'parca boya',
     '\\d+(\\.\\d+)* boya', 'boyali\\d+(\\.\\d+)*', 'boyali \\d+(\\.\\d+)*',
-    'alti boya', 'boyasi mevcut', 'boya var', 'boyanmistir'
+    'alti boya', 'boyasi mevcut', 'boya var', 'boyanmistir', 'boya vr'
   ]
 
   const painted_regex = new RegExp(painted.join('|'), 'i');
@@ -222,17 +225,19 @@ export async function adDetail(content) {
     let value = el ? el[element.attr].trim() : null;
 
     if (value && element.name === 'description') {
-      value = value.replace(/(\r\n|\n|\r)/gm, ' ');
-      value = value.replace(/\s+/g, ' ');
-      value = value.replace(/₺|tl|ytl/gi, '');
-      value = value.replace(/\),\(/g, ' ');
-      value = value.toLowerCase();
-
       const turkish = 'çğıöşüÇĞİÖŞÜ';
       const english = 'cgiosuCGIOSU';
       for (let i = 0; i < turkish.length; i++) {
         value = value.replace(new RegExp(turkish[i], 'g'), english[i]);
       }
+
+      value = value.replace(/(\r\n|\n|\r)/gm, ' ');
+      value = value.replace(/(\(|\))/gm, ' ');
+      value = value.replace(/\s+/g, ' ');
+      value = value.replace(/₺|tl|ytl/gi, '');
+      value = value.replace(/\.|,/g, ' ');
+      value = value.replace(/  +/g, ' ');
+      value = value.toLowerCase();
     }
 
     ads_model[element.name] = value
