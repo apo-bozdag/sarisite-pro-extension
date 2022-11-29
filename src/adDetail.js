@@ -135,25 +135,7 @@ export async function adDetail(content) {
 
   elements.forEach(element => {
     const el = doc.querySelector(element.selector);
-    let value = el ? el[element.attr].trim() : null;
-
-    if (value && element.name === 'description') {
-      const turkish = 'çğıöşüÇĞİÖŞÜ';
-      const english = 'cgiosuCGIOSU';
-      for (let i = 0; i < turkish.length; i++) {
-        value = value.replace(new RegExp(turkish[i], 'g'), english[i]);
-      }
-
-      value = value.replace(/(\r\n|\n|\r)/gm, ' ');
-      value = value.replace(/(\(|\))/gm, ' ');
-      value = value.replace(/\s+/g, ' ');
-      value = value.replace(/₺|tl|ytl/gi, '');
-      value = value.replace(/\.|,/g, ' ');
-      value = value.replace(/  +/g, ' ');
-      value = value.toLowerCase();
-    }
-
-    ads_model[element.name] = value
+    ads_model[element.name] = el ? el[element.attr].trim() : null
   });
 
   if (ads_model['advertiser_store_url']) {

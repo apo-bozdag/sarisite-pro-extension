@@ -1,5 +1,23 @@
 'use strict';
 
+export function reformattedContent(content) {
+  let value = content;
+  const turkish = 'çğıöşüÇĞİÖŞÜ';
+  const english = 'cgiosuCGIOSU';
+  for (let i = 0; i < turkish.length; i++) {
+    value = value.replace(new RegExp(turkish[i], 'g'), english[i]);
+  }
+  value = value.toLowerCase();
+  value = value.replace(/(\r\n|\n|\r)/gm, ' ');
+  value = value.replace(/(\(|\))/gm, ' ');
+  value = value.replace(/\s+/g, ' ');
+  value = value.replace(/₺| tl | ytl /gi, '');
+  value = value.replace(/\.|,/g, ' ');
+  value = value.replace(/;|=|:|!|\?|\(|\)|\[|\]|\{|\}|<|>|\||\/|\\|'|`|~|\^|%|\$|#|@|&|\*|\+|-/g, ' ');
+  value = value.replace(/  +/g, ' ');
+  return value;
+}
+
 
 export function is_damage(description) {
   // if return 0 then no damage else if 1 then severe damage else if 2 then minor damage
@@ -14,7 +32,9 @@ export function is_damage(description) {
     'agi̇r hasar kaydi̇ vardi̇r', 'agir hasarlidir', 'agi̇r hasarli', 'sisirme agir',
     'hasarli agir', 'agir hasar kaydi gelmekte', 'bedelsiz agir',
     'agir hasar kayitlidir', 'agir hasar var', 'agir hasar kay',
-    'agir hasar gozukuyor'
+    'agir hasar gozukuyor', 'bedelsiz agir',
+    'airbag acmis', 'airbag acildi', 'airbag patla', 'hasar kaydi agir hasar',
+    'agir kayitli', 'ag.*r hasar kay.*t'
   ]
   const light_damage = [
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
@@ -49,7 +69,10 @@ export function is_damage(description) {
     'bin kayit', '\\d+(\\.\\d+)* tremer', 'tremer \\d+(\\.\\d+)*', '\\d+(\\.\\d+)*tremer',
     'hasar:', 'hasar kaydi ekliyorum', 'tramer \\d+(\\.\\d+)*',
     'kaydi \\d+(\\.\\d+)*', 'kaydi :\\d+(\\.\\d+)*', 'kaydi: \\d+(\\.\\d+)*',
-    'kaydi:\\d+(\\.\\d+)*', 'kayit vardir'
+    'kaydi:\\d+(\\.\\d+)*', 'kayit vardir', 'tramer (.*) tl', 'tramer; \\d+(\\.\\d+)*',
+    'tramer;\\d+(\\.\\d+)*', 'pert kaydi yoktur', 'tremer kaydi var',
+    'hasar sms', 'hasar resim', 'hasar sorgulama fot', 'hasar fot', 'tramer kaydi sadece',
+    'tramer resimlerde', '\\d+(\\.\\d+)*tramer'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
@@ -71,9 +94,9 @@ export function is_painted(description) {
     'boyali', 'boyali arac', 'boyali aracimiz', 'boyali aracimizdir',
     '\\d+(\\.\\d+)* parca boyali', 'lokal boyali', 'lokal boyali arac',
     'lokal boyali aracimiz', 'lokal', 'cizik boyasi', 'boyasi vardir', 'parca boya',
-    '\\d+(\\.\\d+)* boya', 'boyali\\d+(\\.\\d+)*', 'boyali \\d+(\\.\\d+)*',
+    'boyali\\d+(\\.\\d+)*', 'boyali \\d+(\\.\\d+)*',
     'alti boya', 'boyasi mevcut', 'boya var', 'boyanmistir', 'boya vr', 'boya takintisi',
-    'boya mevcut', 'temizlik boyasi'
+    'boya mevcut', 'temizlik boyasi', 'boyalari var'
   ]
 
   const painted_regex = new RegExp(painted.join('|'), 'i');

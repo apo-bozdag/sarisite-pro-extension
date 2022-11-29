@@ -7,7 +7,7 @@ import {
   options_enum
 } from "./storage";
 import {adDetail} from "./adDetail";
-import {is_damage, is_painted} from "./helpers";
+import {is_damage, is_painted, reformattedContent} from "./helpers";
 
 const hideAds = options_enum.hideAds;
 
@@ -34,7 +34,6 @@ async function allAdsConf() {
             await fetch(url)
               .then(response => response.text())
               .then(async data => {
-                console.log('data kayit ediliyor');
                 get_ads = await adDetail(data);
               }).catch(err => {
                 console.log(err);
@@ -61,12 +60,13 @@ async function allAdsConf() {
               item.querySelector('td.searchResultsTitleValue').prepend(advertiser_name);
             }
 
-            const ad_description = get_ads['description'];
-            const damage_type = is_damage(ad_description);
+            const ad_content = get_ads['title'] + ' ' + get_ads['description'];
+            const format_content = reformattedContent(ad_content);
+            const damage_type = is_damage(format_content);
             const damage_class = damage_type === 0 ? 'no-damage' : damage_type === 1 ? 'severe-damage' : 'light-damage';
             const damage_text = damage_type === 0 ? 'Hasarsız' : damage_type === 1 ? 'Ağır hasar kaydı var' : 'Hasar kaydı var';
 
-            const painted = is_painted(ad_description);
+            const painted = is_painted(format_content);
             const painted_class = painted ? 'painted' : 'not-painted';
             const painted_text = painted ? 'Boyalı' : 'Boyasız';
 
