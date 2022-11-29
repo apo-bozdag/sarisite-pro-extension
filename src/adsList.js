@@ -62,7 +62,7 @@ async function allAdsConf() {
 
             const ad_content = get_ads['title'] + ' ' + get_ads['description'];
             const format_content = reformattedContent(ad_content);
-            if (get_ads['id']=='1062111339'){
+            if (get_ads['id']=='1061879602'){
               console.log('format_content', format_content);
             }
             const damage_type = is_damage(format_content);

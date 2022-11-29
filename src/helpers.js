@@ -35,7 +35,10 @@ export function is_damage(description) {
     'agir hasar gozukuyor', 'bedelsiz agir',
     'airbag acmis', 'airbag acildi', 'airbag patla', 'hasar kaydi agir hasar',
     'agir kayitli', 'ag[A-Za-z]+r hasar kay[A-Za-z]+t',
-    '\\d+(\\.\\d+)* agir hasar', 'agir hasar \\d+(\\.\\d+)*'
+    '\\d+(\\.\\d+)* agir hasar', 'agir hasar \\d+(\\.\\d+)*',
+    'tramer agir \\d+(\\.\\d+)*', 'trameragir \\d+(\\.\\d+)*',
+    'arabam agirhasarli', 'arabam agir hasarli',
+    'agri hasar var', 'bin agri hasar', 'agir hasir kayitlidir'
   ]
   const light_damage = [
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
@@ -74,7 +77,7 @@ export function is_damage(description) {
     'tramer;\\d+(\\.\\d+)*', 'pert kaydi yoktur', 'tremer kaydi var',
     'hasar sms', 'hasar resim', 'hasar sorgulama fot', 'hasar fot', 'tramer kaydi sadece',
     'tramer resimlerde', '\\d+(\\.\\d+)*tramer', 'tirameri var', 'ramer kaydi resim',
-    'lira tramer'
+    'lira tramer', 'hasar \\d+(\\.\\d+)*', 'bin hasar kaydi'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
@@ -99,7 +102,7 @@ export function is_painted(description) {
     'boyali\\d+(\\.\\d+)*', 'boyali \\d+(\\.\\d+)*',
     'alti boya', 'boyasi mevcut', 'boya var', 'boyanmistir', 'boya vr', 'boya takintisi',
     'boya mevcut', 'temizlik boyasi', 'boyalari var',
-    '\\d+(\\.\\d+)* boya'
+    '\\d+(\\.\\d+)* boya', 'boyalar mevcut'
   ]
 
   const painted_regex = new RegExp(painted.join('|'), 'i');
