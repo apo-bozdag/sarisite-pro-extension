@@ -12,7 +12,8 @@ function is_damage(description) {
     '(agir hasar) kayit', 'agir kayit vardir', 'agir hasar olusmus',
     'agir hazar kaydi var', 'agir hasar kaydi var', 'agir hasarli',
     'agi̇r hasar kaydi̇ vardi̇r', 'agir hasarlidir', 'agi̇r hasarli', 'sisirme agir',
-    'hasarli agir', 'agir hasar kaydi gelmekte', 'bedelsiz agir'
+    'hasarli agir', 'agir hasar kaydi gelmekte', 'bedelsiz agir',
+    'agir hasar kayitlidir', 'agir hasar var', 'agir hasar kay'
   ]
   const light_damage = [
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
@@ -43,7 +44,8 @@ function is_damage(description) {
     'tl tramer', 'tramer\\d+(\\.\\d+)*', 'hasar sorgusu resimlerde',
     'tramer = \\d+(\\.\\d+)*', 'tramer =\\d+(\\.\\d+)*', 'tramer = \\d+(\\.\\d+)*',
     'tramer=\\d+(\\.\\d+)*', 'tramer= \\d+(\\.\\d+)*', 'hasar kaydi ise', 'hasar kaydi yalnizca',
-    'adet carpma', '\\d+(\\.\\d+)* hasar kaydi', '\\d+(\\.\\d+)*hasar kaydi'
+    'adet carpma', '\\d+(\\.\\d+)* hasar kaydi', '\\d+(\\.\\d+)*hasar kaydi', 'kayit parca',
+    'bin kayit'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
@@ -66,7 +68,9 @@ function is_painted(description) {
   const painted = [
     'boyali', 'boyali arac', 'boyali aracimiz', 'boyali aracimizdir',
     '\\d+(\\.\\d+)* parca boyali', 'lokal boyali', 'lokal boyali arac',
-    'lokal boyali aracimiz', 'lokal', 'cizik boyasi', 'boyasi vardir', 'parca boya'
+    'lokal boyali aracimiz', 'lokal', 'cizik boyasi', 'boyasi vardir', 'parca boya',
+    '\\d+(\\.\\d+)* boya', 'boyali\\d+(\\.\\d+)*', 'boyali \\d+(\\.\\d+)*',
+    'alti boya', 'boyasi mevcut', 'boya var', 'boyanmistir'
   ]
 
   const painted_regex = new RegExp(painted.join('|'), 'i');
@@ -220,8 +224,8 @@ export async function adDetail(content) {
     if (value && element.name === 'description') {
       value = value.replace(/(\r\n|\n|\r)/gm, ' ');
       value = value.replace(/\s+/g, ' ');
-      value = value.replace(/\([^)]*\)/g, '');
       value = value.replace(/₺|tl|ytl/gi, '');
+      value = value.replace(/\),\(/g, ' ');
       value = value.toLowerCase();
 
       const turkish = 'çğıöşüÇĞİÖŞÜ';
