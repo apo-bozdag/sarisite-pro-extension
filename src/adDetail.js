@@ -43,6 +43,7 @@ function is_damage(description) {
     'tl tramer', 'tramer\\d+(\\.\\d+)*', 'hasar sorgusu resimlerde',
     'tramer = \\d+(\\.\\d+)*', 'tramer =\\d+(\\.\\d+)*', 'tramer = \\d+(\\.\\d+)*',
     'tramer=\\d+(\\.\\d+)*', 'tramer= \\d+(\\.\\d+)*', 'hasar kaydi ise', 'hasar kaydi yalnizca',
+    'adet carpma'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
