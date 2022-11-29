@@ -13,7 +13,7 @@ export function reformattedContent(content) {
   value = value.replace(/\s+/g, ' ');
   value = value.replace(/₺| tl | ytl /gi, '');
   value = value.replace(/\.|,/g, ' ');
-  value = value.replace(/;|=|:|!|\?|\(|\)|\[|\]|\{|\}|<|>|\||\/|\\|'|`|~|\^|%|\$|#|@|&|\*|\+|-/g, ' ');
+  value = value.replace(/;|=|:|-|!|\?|\(|\)|\[|\]|\{|\}|<|>|\||\/|\\|'|`|~|\^|%|\$|#|@|&|\*|\+|-/g, ' ');
   value = value.replace(/  +/g, ' ');
   return value;
 }
@@ -34,7 +34,7 @@ export function is_damage(description) {
     'agir hasar kayitlidir', 'agir hasar var', 'agir hasar kay',
     'agir hasar gozukuyor', 'bedelsiz agir',
     'airbag acmis', 'airbag acildi', 'airbag patla', 'hasar kaydi agir hasar',
-    'agir kayitli', 'ag.*r hasar kay.*t'
+    'agir kayitli', 'ag.*r hasar kay.*t', '\\d+(\\.\\d+)* agir hasar', 'agir hasar \\d+(\\.\\d+)*'
   ]
   const light_damage = [
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
@@ -72,7 +72,7 @@ export function is_damage(description) {
     'kaydi:\\d+(\\.\\d+)*', 'kayit vardir', 'tramer (.*) tl', 'tramer; \\d+(\\.\\d+)*',
     'tramer;\\d+(\\.\\d+)*', 'pert kaydi yoktur', 'tremer kaydi var',
     'hasar sms', 'hasar resim', 'hasar sorgulama fot', 'hasar fot', 'tramer kaydi sadece',
-    'tramer resimlerde', '\\d+(\\.\\d+)*tramer'
+    'tramer resimlerde', '\\d+(\\.\\d+)*tramer', 'tirameri var', 'ramer kaydi resim'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
