@@ -7,6 +7,7 @@ import {
   options_enum
 } from "./storage";
 import {adDetail} from "./adDetail";
+import {is_damage, is_painted} from "./helpers";
 
 const hideAds = options_enum.hideAds;
 
@@ -46,31 +47,57 @@ async function allAdsConf() {
 
             if (get_ads['advertiser_store_name']) {
               const store_name = document.createElement('span');
-              store_name.classList.add('store_name');
+              store_name.classList.add('spro-store-advertiser-name');
               store_name.innerText = get_ads['advertiser_store_name'];
               const br = document.createElement('br');
               item.querySelector('td.searchResultsTitleValue').prepend(br);
               item.querySelector('td.searchResultsTitleValue').prepend(store_name);
             }else if (get_ads['advertiser_name']) {
               const advertiser_name = document.createElement('span');
-              advertiser_name.classList.add('advertiser_name');
+              advertiser_name.classList.add('spro-advertiser-name');
               advertiser_name.innerText = get_ads['advertiser_name'];
               const br = document.createElement('br');
               item.querySelector('td.searchResultsTitleValue').prepend(br);
               item.querySelector('td.searchResultsTitleValue').prepend(advertiser_name);
             }
 
+            const ad_description = get_ads['description'];
+            const damage_type = is_damage(ad_description);
+            const damage_class = damage_type === 0 ? 'no-damage' : damage_type === 1 ? 'severe-damage' : 'light-damage';
+            const damage_text = damage_type === 0 ? 'Hasarsız' : damage_type === 1 ? 'Ağır hasar kaydı var' : 'Hasar kaydı var';
+
+            const painted = is_painted(ad_description);
+            const painted_class = painted ? 'painted' : 'not-painted';
+            const painted_text = painted ? 'Boyalı' : 'Boyasız';
+
+            const label_elements = [
+              {
+                'is_show': damage_type > 0,
+                'text': damage_text,
+                'class': `spro-${damage_class}`,
+                'append': 'searchResultsTitleValue'
+              },
+              {
+                'is_show': painted,
+                'text': painted_text,
+                'class': `spro-${painted_class}`,
+                'append': 'searchResultsTitleValue'
+              }
+            ];
+
+            for (const label_element of label_elements) {
+              if (label_element.is_show) {
+                const label = document.createElement('span');
+                label.classList.add('spro-label');
+                label.classList.add(label_element.class);
+                label.innerText = label_element.text;
+                const br = document.createElement('br');
+                item.querySelector(`td.${label_element.append}`).append(br);
+                item.querySelector(`td.${label_element.append}`).append(label);
+              }
+            }
+
             const extra_element_names = {
-              'damage': {
-                'name': 'damage',
-                'color': 'damage_color',
-                'append': 'searchResultsTitleValue'
-              },
-              'painted': {
-                'name': 'painted',
-                'color': 'painted_color',
-                'append': 'searchResultsTitleValue'
-              },
               'gear': {
                 'name': 'gear',
                 'append': 'searchResultsTagAttributeValue'
@@ -90,21 +117,13 @@ async function allAdsConf() {
                 }
 
                 const extra_element = document.createElement('span');
-                extra_element.setAttribute('class', 'spro_' + extra_element_name);
+                extra_element.setAttribute('class', 'spro-' + extra_element_name);
                 extra_element.innerText = get_ads[extra_element_names[extra_element_name].name];
-                if (extra_element_names[extra_element_name].color) {
-                  extra_element.style.backgroundColor = get_ads[extra_element_names[extra_element_name].color];
-                  extra_element.style.color = '#fff';
-                  extra_element.style.textShadow = '0 0 1px #000';
-                }
                 if (has_element) {
                   has_element.append(extra_element);
                 }
               }
             }
-
-
-            console.log('get_ads', get_ads);
           }
         }
       );

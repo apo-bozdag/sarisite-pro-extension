@@ -1,0 +1,39 @@
+.spro-label {
+
+}
+
+.spro-light-damage {
+  background-color: darkorange;
+  color: rgb(255, 255, 255);
+  text-shadow: rgb(0 0 0) 0px 0px 1px;
+}
+
+.spro-severe-damage {
+  background-color: red;
+  color: rgb(255, 255, 255);
+  text-shadow: rgb(0 0 0) 0px 0px 1px;
+}
+
+.spro-painted {
+  background-color: darkorange;
+  color: rgb(255, 255, 255);
+  text-shadow: rgb(0 0 0) 0px 0px 1px;
+}
+
+.spro-gear {
+}
+
+.spro-fuel {
+}
+
+.spro-advertiser-name {
+  color: black;
+  font-weight: bold;
+  text-shadow: rgb(255 255 255) 0px 0px 1px;
+}
+
+.spro-store-advertiser-name {
+  color: orange;
+  font-weight: bold;
+  text-shadow: black 0px 0px 0.5px;
+}
