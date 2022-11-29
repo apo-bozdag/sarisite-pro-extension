@@ -48,7 +48,8 @@ function is_damage(description) {
     'adet carpma', '\\d+(\\.\\d+)* hasar kaydi', '\\d+(\\.\\d+)*hasar kaydi', 'kayit parca',
     'bin kayit', '\\d+(\\.\\d+)* tremer', 'tremer \\d+(\\.\\d+)*', '\\d+(\\.\\d+)*tremer',
     'hasar:', 'hasar kaydi ekliyorum', 'tramer \\d+(\\.\\d+)*',
-    'kaydi \\d+(\\.\\d+)*',
+    'kaydi \\d+(\\.\\d+)*', 'kaydi :\\d+(\\.\\d+)*', 'kaydi: \\d+(\\.\\d+)*',
+    'kaydi:\\d+(\\.\\d+)*', 'kayit vardir'
   ]
 
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
@@ -73,7 +74,8 @@ function is_painted(description) {
     '\\d+(\\.\\d+)* parca boyali', 'lokal boyali', 'lokal boyali arac',
     'lokal boyali aracimiz', 'lokal', 'cizik boyasi', 'boyasi vardir', 'parca boya',
     '\\d+(\\.\\d+)* boya', 'boyali\\d+(\\.\\d+)*', 'boyali \\d+(\\.\\d+)*',
-    'alti boya', 'boyasi mevcut', 'boya var', 'boyanmistir', 'boya vr'
+    'alti boya', 'boyasi mevcut', 'boya var', 'boyanmistir', 'boya vr', 'boya takintisi',
+    'boya mevcut', 'temizlik boyasi'
   ]
 
   const painted_regex = new RegExp(painted.join('|'), 'i');
