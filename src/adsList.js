@@ -105,6 +105,11 @@ async function allAdsConf() {
               'fuel': {
                 'name': 'fuel',
                 'append': 'searchResultsTagAttributeValue'
+              },
+              'engine_power': {
+                'name': 'engine_power',
+                'append': 'searchResultsAttributeValue',
+                'text': 'HP'
               }
             }
 
@@ -119,6 +124,9 @@ async function allAdsConf() {
                 const extra_element = document.createElement('span');
                 extra_element.setAttribute('class', 'spro-' + extra_element_name);
                 extra_element.innerText = get_ads[extra_element_names[extra_element_name].name];
+                if (extra_element_names[extra_element_name].text) {
+                  extra_element.innerText += ' ' + extra_element_names[extra_element_name].text;
+                }
                 if (has_element) {
                   has_element.append(extra_element);
                 }
