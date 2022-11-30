@@ -1,5 +1,14 @@
 @import '@/assets/style/spro/app.scss';
 
+.spro-item-loading-message {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--spro-color-success);
+  right: calc(var(--spro-spacer) * 2);
+  bottom: var(--spro-spacer);
+}
+
 .spro-label {
   position: relative;
 }
