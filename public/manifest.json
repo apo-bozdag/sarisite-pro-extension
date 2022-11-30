@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Sarı Site Pro",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.",
   "options_page": "options.html",
   "icons": {

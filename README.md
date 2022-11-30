@@ -2,6 +2,8 @@
 
 Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 
+<img src="public/ss.jpg">
+
 ## Features
 
 - [x] Magaza engelleme (o magazanin ilanlarini gormezsin)
