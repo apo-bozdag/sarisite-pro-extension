@@ -55,7 +55,7 @@ export function is_damage(description) {
     'parca parca hasar kaydi', 'parca parca hasar', 'parca parca hasar kaydi',
     'tramer \\d+(\\.\\d+)*', 'hasar kaydi \\d+(\\.\\d+)*', 'parca parca \\d+(\\.\\d+)*',
     'tek parca', 'tek parca \\d+(\\.\\d+)*', 'tramer kaydi:', 'hasar bulunmakta',
-    'erp carpma', 'carpisma', 'hasar sorgulamasi resimlerde', 'tramer kaydi:',
+    'erp carpma', 'hasar sorgulamasi resimlerde', 'tramer kaydi:',
     'hasar sorgulamasi resi̇mlerde', 'hasar kaydi sorgulamasi fotograflarda',
     'son tramer kaydi', 'tramer kaydi : \\d+(\\.\\d+)*', '\\d+(\\.\\d+)* tramer var',
     '\\d+(\\.\\d+)* tramer kaydi', 'tramer:\\d+(\\.\\d+)*', 'tramer: \\d+(\\.\\d+)*',
