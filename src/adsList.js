@@ -27,7 +27,13 @@ async function allAdsConf() {
         href = href.getAttribute('href');
       }
 
+      const itemLoadingMessageDOM = `<span class="spro-item-loading-message">Bilgiler alınıyor...</span>`;
+
       await ads.get({[id]: null}).then(async r => {
+
+          // Render loading message
+          item.querySelector('td.searchResultsTitleValue').innerHTML += itemLoadingMessageDOM;
+
           let get_ads = r[id];
 
           if (!get_ads && href) {
@@ -43,6 +49,9 @@ async function allAdsConf() {
           }
 
           if (get_ads) {
+            // Hide loading message
+            await item.querySelector('.spro-item-loading-message').classList.add('spro-d-none');
+
             item.setAttribute('data-store_name', get_ads.advertiser_store_username);
 
             if (get_ads['advertiser_store_name']) {
