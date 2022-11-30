@@ -1,6 +1,6 @@
 'use strict';
 
-import './popup.css';
+import './popup.scss';
 import {options_enum, options} from "./storage";
 import {open_settings} from "./helpers";
 

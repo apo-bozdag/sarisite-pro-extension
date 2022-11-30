@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path')
 const { merge } = require('webpack-merge');
 
 const common = require('./webpack.common.js');
@@ -10,11 +11,16 @@ const config = (env, argv) =>
   merge(common, {
     entry: {
       popup: PATHS.src + '/popup.js',
-      contentStyle: PATHS.src + '/contentStyle.css',
+      contentStyle: PATHS.src + '/contentStyle.scss',
       contentScript: PATHS.src + '/contentScript.js',
       background: PATHS.src + '/background.js',
     },
     devtool: argv.mode === 'production' ? false : 'source-map',
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "../src/"),
+      }
+    }
   });
 
 module.exports = config;

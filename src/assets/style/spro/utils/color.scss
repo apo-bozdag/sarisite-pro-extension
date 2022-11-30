@@ -1,0 +1,35 @@
+@import '@/assets/style/spro/constants.scss';
+
+// Text Color
+.#{$SPRO_PREFIX}-color-text-accent {
+  color: var(--spro-color-accent);
+}
+
+.#{$SPRO_PREFIX}-color-text-success {
+  color: var(--spro-color-success);
+}
+
+.#{$SPRO_PREFIX}-color-text-attention {
+  color: var(--spro-color-attention);
+}
+
+.#{$SPRO_PREFIX}-color-text-danger {
+  color: var(--spro-color-danger);
+}
+
+// BG Color
+.#{$SPRO_PREFIX}-color-bg-accent {
+  background-color: var(--spro-color-accent);
+}
+
+.#{$SPRO_PREFIX}-color-bg-success {
+  background-color: var(--spro-color-success);
+}
+
+.#{$SPRO_PREFIX}-color-bg-attention {
+  background-color: var(--spro-color-attention);
+}
+
+.#{$SPRO_PREFIX}-color-bg-danger {
+  background-color: var(--spro-color-danger);
+}

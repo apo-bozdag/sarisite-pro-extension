@@ -50,11 +50,9 @@ async function add_extra_store_sections(store_username) {
   }
 
   // magaza engelle / engeli kaldir butonu
-  const button = document.createElement('button');
-  button.id = 'block_store';
-  button.className = 'btn btn-form btn-warning';
-  button.innerText = button_text;
-  document.querySelector('.link-wrapper').appendChild(button);
+  document.querySelector('.link-wrapper').innerHTML += `
+    <button id="block_store" class="spro-button spro-button--danger spro-ml-2">${button_text}</button>
+  `
 
   // engellenmis magaza mesaji
   const div = document.createElement('div');
