@@ -1,0 +1,46 @@
+@import '@/assets/style/spro/constants.scss';
+
+$spacer: 1rem;
+
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);
+
+@each $key, $value in $spacers {
+  .#{$SPRO_PREFIX}-ml-#{$key} {
+    margin-left: $value !important;
+  }
+
+  .#{$SPRO_PREFIX}-mt-#{$key} {
+    margin-top: $value !important;
+  }
+
+  .#{$SPRO_PREFIX}-mr-#{$key} {
+    margin-right: $value !important;
+  }
+
+  .#{$SPRO_PREFIX}-mb-#{$key} {
+    margin-bottom: $value !important;
+  }
+
+  .#{$SPRO_PREFIX}-pl-#{$key} {
+    padding-left: $value !important;
+  }
+
+  .#{$SPRO_PREFIX}-pt-#{$key} {
+    padding-top: $value !important;
+  }
+
+  .#{$SPRO_PREFIX}-pr-#{$key} {
+    padding-right: $value !important;
+  }
+
+  .#{$SPRO_PREFIX}-pb-#{$key} {
+    padding-bottom: $value !important;
+  }
+}

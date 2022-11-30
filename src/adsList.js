@@ -1,4 +1,5 @@
 'use strict';
+import { damageTypeEnum } from "@/enums";
 import {
   ads,
   get_ads_displayed,
@@ -45,19 +46,13 @@ async function allAdsConf() {
             item.setAttribute('data-store_name', get_ads.advertiser_store_username);
 
             if (get_ads['advertiser_store_name']) {
-              const store_name = document.createElement('span');
-              store_name.classList.add('spro-store-advertiser-name');
-              store_name.innerText = get_ads['advertiser_store_name'];
-              const br = document.createElement('br');
-              item.querySelector('td.searchResultsTitleValue').prepend(br);
-              item.querySelector('td.searchResultsTitleValue').prepend(store_name);
-            }else if (get_ads['advertiser_name']) {
-              const advertiser_name = document.createElement('span');
-              advertiser_name.classList.add('spro-advertiser-name');
-              advertiser_name.innerText = get_ads['advertiser_name'];
-              const br = document.createElement('br');
-              item.querySelector('td.searchResultsTitleValue').prepend(br);
-              item.querySelector('td.searchResultsTitleValue').prepend(advertiser_name);
+              item.querySelector('td.searchResultsTitleValue').insertAdjacentHTML('afterbegin', `
+                <span class="spro-store-advertiser-name spro-color-text-attention">${get_ads['advertiser_store_name']}</span>
+              `)
+            } else if (get_ads['advertiser_name']) {
+              item.querySelector('td.searchResultsTitleValue').insertAdjacentHTML('afterbegin', `
+                <span class="spro-store-advertiser-name spro-color-text-success">${get_ads['advertiser_name']}</span>
+              `)
             }
 
             const ad_content = get_ads['title'] + ' ' + get_ads['description'];
@@ -65,38 +60,65 @@ async function allAdsConf() {
             if (get_ads['id']=='1061879602'){
               console.log('format_content', format_content);
             }
-            const damage_type = is_damage(format_content);
-            const damage_class = damage_type === 0 ? 'no-damage' : damage_type === 1 ? 'severe-damage' : 'light-damage';
-            const damage_text = damage_type === 0 ? 'Hasarsız' : damage_type === 1 ? 'Ağır hasar kaydı var' : 'Hasar kaydı var';
 
+            // Damage Element Creator
+            const damage_type = is_damage(format_content);
+
+            const damage_class = () => {
+              if (damage_type === damageTypeEnum.SEVERE) {
+                return 'severe-damage spro-label--danger'
+              } else if (damage_type === damageTypeEnum.LIGHT) {
+                return 'light-damage spro-label--attention'
+              } else {
+                return 'no-damage spro-label--accent'
+              }
+            }
+
+            const damage_text = () => {
+              if (damage_type === damageTypeEnum.SEVERE) {
+                return 'Ağır Hasar kaydı var'
+              } else if (damage_type === damageTypeEnum.LIGHT) {
+                return 'Hasar kaydı var'
+              } else {
+                return 'Hasarsız'
+              }
+            }
+
+            // Painted Element Creator
             const painted = is_painted(format_content);
-            const painted_class = painted ? 'painted' : 'not-painted';
-            const painted_text = painted ? 'Boyalı' : 'Boyasız';
+
+            const painted_class = () => {
+              return painted ? 'painted spro-label--attention' : 'not-painted spro-label--accent';
+            }
+
+            const painted_text = () => {
+              return painted ? 'Boyalı' : 'Boyasız';
+            }
 
             const label_elements = [
               {
                 'is_show': damage_type > 0,
-                'text': damage_text,
-                'class': `spro-${damage_class}`,
+                'text': damage_text(),
+                'class': `spro-${damage_class()}`,
                 'html_tag': 'searchResultsTitleValue'
               },
               {
                 'is_show': painted,
-                'text': painted_text,
-                'class': `spro-${painted_class}`,
+                'text': painted_text(),
+                'class': `spro-${painted_class()}`,
                 'html_tag': 'searchResultsTitleValue'
               }
             ];
 
+            item.querySelector('.searchResultsTitleValue').innerHTML += `
+              <div class="spro-featured-labels spro-mt-2"></div>
+            `
+
             for (const label_element of label_elements) {
               if (label_element.is_show) {
-                const label = document.createElement('span');
-                label.classList.add('spro-label');
-                label.classList.add(label_element.class);
-                label.innerText = label_element.text;
-                const br = document.createElement('br');
-                item.querySelector(`td.${label_element.html_tag}`).append(br);
-                item.querySelector(`td.${label_element.html_tag}`).append(label);
+                item.querySelector(`.spro-featured-labels`).innerHTML += `
+                  <span class="spro-label ${label_element.class}">${label_element.text}</span>
+                `
               }
             }
 

@@ -1,0 +1,27 @@
+@import '@/assets/style/spro/app.scss';
+
+.spro-label {
+  position: relative;
+}
+
+.spro-severe-damage {}
+
+.spro-light-damage {}
+
+.spro-painted {}
+
+.spro-gear {}
+
+.spro-fuel {}
+
+.spro-advertiser-name {
+  display: flex;
+  flex: 1;
+  text-transform: uppercase;
+}
+
+.spro-store-advertiser-name {
+  display: flex;
+  flex: 1;
+  text-transform: uppercase;
+}

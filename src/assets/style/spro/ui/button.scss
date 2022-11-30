@@ -1,0 +1,39 @@
+@import '@/assets/style/spro/constants.scss';
+
+.#{$SPRO_PREFIX}-button {
+  position: relative;
+  font-family: inherit;
+  font-size: 14px;
+  border: 0;
+  border-radius: calc(var(--spro-border-radius-01) / 2);
+  background-color: var(--spro-color-brand);
+  color: #fff;
+  padding: calc(var(--spro-spacer) * 2) calc(var(--spro-spacer) * 3);
+  cursor: pointer;
+
+  &--accent {
+    background-color: var(--spro-color-accent);
+  }
+
+  &--success {
+    background-color: var(--spro-color-success);
+  }
+
+  &--attention {
+    background-color: var(--spro-color-attention);
+  }
+
+  &--danger {
+    background-color: var(--spro-color-danger);
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &[disabled],
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

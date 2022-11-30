@@ -1,0 +1,27 @@
+@import '@/assets/style/spro/constants.scss';
+
+.#{$SPRO_PREFIX}-label {
+  position: relative;
+  font-family: inherit;
+  font-size: 12px;
+  border-radius: var(--spro-border-radius-01);
+  background-color: var(--spro-color-brand);
+  color: #fff;
+  padding: calc(var(--spro-spacer) / 2) calc(var(--spro-spacer) * 2);
+
+  &--accent {
+    background-color: var(--spro-color-accent);
+  }
+
+  &--success {
+    background-color: var(--spro-color-success);
+  }
+
+  &--attention {
+    background-color: var(--spro-color-attention);
+  }
+
+  &--danger {
+    background-color: var(--spro-color-danger);
+  }
+}
