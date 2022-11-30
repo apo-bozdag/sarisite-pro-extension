@@ -47,11 +47,11 @@ async function allAdsConf() {
 
             if (get_ads['advertiser_store_name']) {
               item.querySelector('td.searchResultsTitleValue').insertAdjacentHTML('afterbegin', `
-                <span class="spro-store-advertiser-name">${get_ads['advertiser_store_name']}</span>
+                <span class="spro-store-advertiser-name spro-color-text-attention">${get_ads['advertiser_store_name']}</span>
               `)
             } else if (get_ads['advertiser_name']) {
               item.querySelector('td.searchResultsTitleValue').insertAdjacentHTML('afterbegin', `
-                <span class="spro-store-advertiser-name">${get_ads['advertiser_name']}</span>
+                <span class="spro-store-advertiser-name spro-color-text-success">${get_ads['advertiser_name']}</span>
               `)
             }
 
