@@ -45,7 +45,8 @@ async function allAdsConf() {
               }).catch(err => {
                 console.log(err);
               })
-            await new Promise(resolve => setTimeout(resolve, 2000))
+            // random wait 2 and 5 seconds
+            await new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 3000) + 2000));
           }
 
           if (get_ads) {
