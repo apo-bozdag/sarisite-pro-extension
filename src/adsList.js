@@ -66,7 +66,7 @@ async function allAdsConf() {
 
             const ad_content = get_ads['title'] + ' ' + get_ads['description'];
             const format_content = reformattedContent(ad_content);
-            // if (get_ads['id']=='1064968208'){
+            // if (get_ads['id']=='1064844990'){
             //   console.log('format_content', format_content);
             // }
 

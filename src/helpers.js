@@ -30,7 +30,7 @@ export function is_damage(description) {
     '(agir hasar) kayit', 'agir kayit vardir', 'agir hasar olusmus',
     'agir hazar kaydi var', 'agir hasar kaydi var', 'agir hasarli',
     'agi̇r hasar kaydi̇ vardi̇r', 'agir hasarlidir', 'agi̇r hasarli', 'sisirme agir',
-    'hasarli agir', 'agir hasar kaydi gelmekte', 'bedelsiz agir',
+    'agir hasar kaydi gelmekte', 'bedelsiz agir',
     'agir hasar kayitlidir', 'agir hasar var',
     'agir hasar gozukuyor', 'bedelsiz agir',
     'airbag acmis', 'airbag acildi', 'airbag patla', 'hasar kaydi agir hasar',
