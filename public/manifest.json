@@ -18,7 +18,7 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "storage", "tabGroups"
+    "storage"
   ],
   "content_scripts": [
     {
