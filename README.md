@@ -1,6 +1,6 @@
-# <img src="public/icons/icon-48.png" width="45" align="left"> Sahibinden Pro Extension
+# <img src="public/icons/icon-48.png" width="45" align="left"> Sarı site Pro Extension
 
-Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
+Daha iyi bir sarı site deneyimi için geliştirilmiş bir eklenti.
 
 <img src="public/ss.jpg">
 
@@ -26,9 +26,7 @@ Daha iyi bir sahibinden.com deneyimi için geliştirilmiş bir eklenti.
 3. Open `chrome://extensions`
 4. Check the Developer mode checkbox
 5. Click on the Load unpacked extension button
-6. Select the folder `sahibinden-pro/build`
-
-[**Chrome** extension](https://chrome.google.com/webstore/detail/sar%C4%B1-site-pro/oedfoaacpogodngkbkkjklgkjlpiaikd)
+6. Select the folder `sarisite-pro-extension/build`
 
 ## Contribution
 

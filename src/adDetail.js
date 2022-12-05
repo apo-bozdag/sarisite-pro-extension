@@ -137,7 +137,7 @@ export async function adDetail(content) {
   });
 
   if (ads_model['advertiser_store_url']) {
-    const store_regex = new RegExp('https://(\\w+)\\.sahibinden\\.com/', 'i');
+    const store_regex = new RegExp('https://(\\w+)\\.sarı site\\.com/', 'i');
     ads_model['advertiser_store_username'] = ads_model['advertiser_store_url'].replace(store_regex, '$1');
   }
 
