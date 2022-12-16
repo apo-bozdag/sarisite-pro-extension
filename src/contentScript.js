@@ -24,7 +24,7 @@ if (category_breadcrumb.length > 0) {
 function init() {
   custom_style();
 
-  // if the page language is not turkish then redirect to turkish page
+  // If the page language is not Turkish, redirect to the Turkish page
   if (is_eng_page) {
     const tr_link = document.querySelector('link[rel="alternate"][hreflang="tr"]');
     if (tr_link) {
