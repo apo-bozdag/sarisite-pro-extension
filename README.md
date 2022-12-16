@@ -9,7 +9,7 @@ Daha iyi bir sarı site deneyimi için geliştirilmiş bir eklenti.
 - [x] Mağaza engelleme (o mağazanın ilanlarının görmezsin.)
 - [x] Baktığım ilanları gizle özelliği
 - [x] İlan listesinde: hasar kaydı, boya, yakıtı ve vites tipi eklendi
-- [x] İlan detayında WhatsApp ve Telegram ile mesaj gonderme
+- [x] İlan detayında WhatsApp ve Telegram ile mesaj gönderme
 - [ ] İlan listesine hasar kaydı, boya olan-olmayan filtresi
 - [ ] İlan listesinde AJAX algılayıp otomatik olarak listede güncelleme yapması
 - [ ] Options sayfasında engellediğin mağazaları görme ve kaldırma
