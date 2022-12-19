@@ -6,7 +6,7 @@ function add_extra_message_sections(phone_number) {
   const phone_number_regex = new RegExp('0 \\((\\d{3})\\) (\\d{3}) (\\d{2}) (\\d{2})', 'i');
   const phone_number_formatted = phone_number.replace(phone_number_regex, '0$1$2$3$4');
   const current_url = window.location.href;
-  const wp_text = `Merhaba, ilanınızı Whatshapp üzerinden gördüm. ${current_url}`;
+  const wp_text = `Merhaba, ilanınızı WhatsApp üzerinden gördüm. ${current_url}`;
   const wlink = `https://api.whatsapp.com/send?phone=+9${phone_number_formatted}&text=${wp_text}`;
   const telegram_link = `https://t.me/+9${phone_number_formatted}/sendMessage?url=${current_url}&text=${wp_text}`;
   const sections = [
