@@ -19,10 +19,9 @@ export function reformattedContent(content) {
   return value;
 }
 
-
 export function is_damage(description) {
   // if return 0 then no damage else if 1 then severe damage else if 2 then minor damage
-  const severe_damage = [
+  const severe_damage = ['agir hasar', 'agir hasar kaydi',
     'agir hasar kaydi \\d+(\\.\\d+)*', 'erp-agir hasarli', 'agir hasar kaydi cikmaktadir',
     'kaporta hasarindan dolayi agir hasar vardir', 'aracimin pert kaydi vardir',
     'arac pert kayitli ', ' hasar kayitlidir', 'aracta pert kaydi mevcuttur',
@@ -41,7 +40,7 @@ export function is_damage(description) {
     'arabam agirhasarli', 'arabam agir hasarli',
     'agri hasar var', 'bin agri hasar', 'agir hasir kayitlidir'
   ]
-  const light_damage = [ 'hasar kaydi', 'hasar kaydi var',
+  const light_damage = ['hasar kaydi', 'hasar kaydi var',
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
     'aracimizda hasar kaydi vardir', ' hasar kaydi var', ' hasar kayitli ',
     'aracimiz hs kayitlidir', ' calinti buluntu kaydindan ', 'aracta agar hasar gozukmek',
