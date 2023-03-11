@@ -1,4 +1,5 @@
 'use strict';
+import { damageTypeEnum } from "@/enums";
 
 export function reformattedContent(content) {
   let value = content;
@@ -40,7 +41,7 @@ export function is_damage(description) {
     'arabam agirhasarli', 'arabam agir hasarli',
     'agri hasar var', 'bin agri hasar', 'agir hasir kayitlidir'
   ]
-  const light_damage = [
+  const light_damage = [ 'hasar kaydi', 'hasar kaydi var',
     'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
     'aracimizda hasar kaydi vardir', ' hasar kaydi var', ' hasar kayitli ',
     'aracimiz hs kayitlidir', ' calinti buluntu kaydindan ', 'aracta agar hasar gozukmek',
@@ -83,11 +84,11 @@ export function is_damage(description) {
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
   const light_damage_regex = new RegExp(light_damage.join('|'), 'i');
 
-  let return_value = 0;
+  let return_value = damageTypeEnum.CLEAR;
   if (severe_damage_regex.test(description)) {
-    return_value = 1;
+    return_value = damageTypeEnum.SEVERE;
   } else if (light_damage_regex.test(description)) {
-    return_value = 2;
+    return_value = damageTypeEnum.LIGHT;
   }
 
   return return_value;
