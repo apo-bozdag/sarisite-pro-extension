@@ -62,6 +62,31 @@ options.changeStream
     }
   });
 
+// Listen hideSevere changes
+options.changeStream
+  .pipe(filter((hideSevere) => !!hideSevere))
+  .subscribe(({hideSevere}) => {
+    console.log('sarı site pro - old value', hideSevere.oldValue)
+    console.log('sarı site pro - new value', hideSevere.newValue)
+    // is ads list page
+    if (is_car_ads_list) {
+      // noinspection JSIgnoredPromiseFromCall
+      makeHide();
+    }
+  });
+ 
+  options.changeStream
+  .pipe(filter((ignoredText) => !!ignoredText))
+  .subscribe(({ignoredText}) => {
+    console.log('sarı site pro - old value', ignoredText.oldValue)
+    console.log('sarı site pro - new value', ignoredText.newValue)
+    // is ads list page
+    if (is_car_ads_list) {
+      // noinspection JSIgnoredPromiseFromCall
+      makeHide();
+    }
+  });
+
 // Listen all changes
 options.valueStream.subscribe((values) => {
   console.log('sarı site - options', values)

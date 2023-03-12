@@ -3,12 +3,14 @@
 import { getBucket } from '@extend-chrome/storage'
 
 export const options_enum = {
-  hideAds: 'hideAds'
+  hideAds: 'hideAds',
+  hideSevere: 'hideSevere',
+  ignoredText: 'ignoredText'
 }
 
 export const options = getBucket('options')
 export const ads = getBucket('ads')
-export const blocked_store = getBucket('store')
+export const blocked_store = getBucket('store') 
 
 export async function get_blocked_store() {
   let block_list = [];

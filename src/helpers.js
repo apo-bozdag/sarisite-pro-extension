@@ -21,7 +21,7 @@ export function reformattedContent(content) {
 
 export function is_damage(description) {
   // if return 0 then no damage else if 1 then severe damage else if 2 then minor damage
-  const severe_damage = ['agir hasar',
+  const severe_damage = ['agir hasar','agr hasarl',
     'agir hasar kaydi \\d+(\\.\\d+)*', 'erp-agir hasarli', 'agir hasar kaydi cikmaktadir',
     'kaporta hasarindan dolayi agir hasar vardir', 'aracimin pert kaydi vardir',
     'arac pert kayitli ', ' hasar kayitlidir', 'aracta pert kaydi mevcuttur',
@@ -130,6 +130,7 @@ export function custom_style() {
       item.remove();
     });
   }
+  
   // ilan listesi arasindaki uyarilari silelim
   const promoTopList = document.querySelectorAll('.searchResultsPromoToplist');
   if (promoTopList) {
