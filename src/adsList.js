@@ -182,6 +182,8 @@ async function allAdsConf() {
               }
             }
           }
+
+          makeHide();
         }
       }
       );
@@ -225,8 +227,7 @@ export async function makeHide() {
             ignoredTextValueList.forEach(element => {
               if (element.length > 0 && itemText.indexOf(element) != -1) {
 
-                item.classList.add('searchResultsIgnored');
-
+                item.classList.add('searchResultsIgnored'); 
                 //item.style.display = 'none';
                 return;
               }
