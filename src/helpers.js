@@ -40,8 +40,7 @@ export function is_damage(description) {
     'arabam agirhasarli', 'arabam agir hasarli',
     'agri hasar var', 'bin agri hasar', 'agir hasir kayitlidir'
   ]
-  const light_damage = ['hasar kaydi', 
-    'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
+  const light_damage = ['hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
     'aracimizda hasar kaydi vardir', ' hasar kaydi var', ' hasar kayitli ',
     'aracimiz hs kayitlidir', ' calinti buluntu kaydindan ', 'aracta agar hasar gozukmek',
     'hasar kaydina takintisi olmayanlar', 'hasar kayitlidirarac', 'hasar kaydi vardir',
