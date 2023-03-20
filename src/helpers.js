@@ -1,4 +1,5 @@
 'use strict';
+import { damageTypeEnum } from "@/enums";
 
 export function reformattedContent(content) {
   let value = content;
@@ -18,10 +19,9 @@ export function reformattedContent(content) {
   return value;
 }
 
-
 export function is_damage(description) {
   // if return 0 then no damage else if 1 then severe damage else if 2 then minor damage
-  const severe_damage = [
+  const severe_damage = ['agir hasar','agr hasarl',
     'agir hasar kaydi \\d+(\\.\\d+)*', 'erp-agir hasarli', 'agir hasar kaydi cikmaktadir',
     'kaporta hasarindan dolayi agir hasar vardir', 'aracimin pert kaydi vardir',
     'arac pert kayitli ', ' hasar kayitlidir', 'aracta pert kaydi mevcuttur',
@@ -40,8 +40,7 @@ export function is_damage(description) {
     'arabam agirhasarli', 'arabam agir hasarli',
     'agri hasar var', 'bin agri hasar', 'agir hasir kayitlidir'
   ]
-  const light_damage = [
-    'hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
+  const light_damage = ['hasar kaydi bulunmakta', 'aracimizin bazi sorunlari vardir',
     'aracimizda hasar kaydi vardir', ' hasar kaydi var', ' hasar kayitli ',
     'aracimiz hs kayitlidir', ' calinti buluntu kaydindan ', 'aracta agar hasar gozukmek',
     'hasar kaydina takintisi olmayanlar', 'hasar kayitlidirarac', 'hasar kaydi vardir',
@@ -83,11 +82,11 @@ export function is_damage(description) {
   const severe_damage_regex = new RegExp(severe_damage.join('|'), 'i');
   const light_damage_regex = new RegExp(light_damage.join('|'), 'i');
 
-  let return_value = 0;
+  let return_value = damageTypeEnum.CLEAR;
   if (severe_damage_regex.test(description)) {
-    return_value = 1;
+    return_value = damageTypeEnum.SEVERE;
   } else if (light_damage_regex.test(description)) {
-    return_value = 2;
+    return_value = damageTypeEnum.LIGHT;
   }
 
   return return_value;
@@ -130,6 +129,7 @@ export function custom_style() {
       item.remove();
     });
   }
+  
   // ilan listesi arasindaki uyarilari silelim
   const promoTopList = document.querySelectorAll('.searchResultsPromoToplist');
   if (promoTopList) {

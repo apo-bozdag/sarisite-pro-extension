@@ -7,12 +7,23 @@ import {
   options,
   options_enum
 } from "./storage";
-import {adDetail} from "./adDetail";
-import {is_damage, is_painted, reformattedContent} from "./helpers";
+import { adDetail } from "./adDetail";
+import { is_damage, is_painted, reformattedContent } from "./helpers";
 
 const hideAds = options_enum.hideAds;
+const hideSevere = options_enum.hideSevere;
+const ignoredText = options_enum.ignoredText;
 
 async function allAdsConf() {
+
+  let ignoredTextValue = await options.get({ [ignoredText]: '' });
+
+  document.querySelector(".result-text").innerHTML += `<br/> <span> ilgilenmeyen ilan yap "," ile ayırın örnek:ağır,hasar </span> <input value="${ignoredTextValue[ignoredText]}" style="width: 100%;" type="text" class="ignoredText" name="ignoredText">`;
+
+  document.querySelector('.ignoredText').addEventListener('input', async (e) => {
+    await options.set({ [ignoredText]: e.target.value });
+  });
+
   const ads_element = document.querySelectorAll('tbody.searchResultsRowClass tr');
   if (ads_element) {
     for (const item of ads_element) {
@@ -29,146 +40,152 @@ async function allAdsConf() {
 
       const itemLoadingMessageDOM = `<span class="spro-item-loading-message">Bilgiler alınıyor...</span>`;
 
-      await ads.get({[id]: null}).then(async r => {
+      await ads.get({ [id]: null }).then(async r => {
 
-          // Render loading message
-          item.querySelector('td.searchResultsTitleValue').innerHTML += itemLoadingMessageDOM;
+        // Render loading message
+        item.querySelector('td.searchResultsTitleValue').innerHTML += itemLoadingMessageDOM;
 
-          let get_ads = r[id];
+        let get_ads = r[id];
 
-          if (!get_ads && href) {
-            const url = `https://www.sahibinden.com${href}`;
-            await fetch(url)
-              .then(response => response.text())
-              .then(async data => {
-                get_ads = await adDetail(data);
-              }).catch(err => {
-                console.log(err);
-              })
-            // random wait 2 and 5 seconds
-            await new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 3000) + 2000));
-          }
+        if (!get_ads && href) {
+          const url = `https://www.sahibinden.com${href}`;
+          await fetch(url)
+            .then(response => response.text())
+            .then(async data => {
+              get_ads = await adDetail(data);
+            }).catch(err => {
+              console.log(err);
+            })
+          // random wait 2 and 5 seconds
+          await new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 3000) + 2000));
+        }
 
-          if (get_ads) {
-            // Hide loading message
-            await item.querySelector('.spro-item-loading-message').classList.add('spro-d-none');
+        if (get_ads) {
+          // Hide loading message
+          await item.querySelector('.spro-item-loading-message').classList.add('spro-d-none');
 
-            item.setAttribute('data-store_name', get_ads.advertiser_store_username);
+          item.setAttribute('data-store_name', get_ads.advertiser_store_username);
 
-            if (get_ads['advertiser_store_name']) {
-              item.querySelector('td.searchResultsTitleValue').insertAdjacentHTML('afterbegin', `
+          if (get_ads['advertiser_store_name']) {
+            item.querySelector('td.searchResultsTitleValue').insertAdjacentHTML('afterbegin', `
                 <span class="spro-store-advertiser-name spro-color-text-attention">${get_ads['advertiser_store_name']}</span>
               `)
-            } else if (get_ads['advertiser_name']) {
-              item.querySelector('td.searchResultsTitleValue').insertAdjacentHTML('afterbegin', `
+          } else if (get_ads['advertiser_name']) {
+            item.querySelector('td.searchResultsTitleValue').insertAdjacentHTML('afterbegin', `
                 <span class="spro-store-advertiser-name spro-color-text-success">${get_ads['advertiser_name']}</span>
               `)
+          }
+
+          const ad_content = get_ads['title'] + ' ' + get_ads['description'];
+          const format_content = reformattedContent(ad_content);
+          // if (get_ads['id']=='1064844990'){
+          //   console.log('format_content', format_content);
+          // }
+
+          // Damage Element Creator
+          const damage_type = is_damage(format_content);
+
+          if (damage_type === damageTypeEnum.SEVERE) {
+            item.classList.add('severe-damage');
+          }
+
+          const damage_class = () => {
+            if (damage_type === damageTypeEnum.SEVERE) {
+              return 'severe-damage spro-label--danger'
+            } else if (damage_type === damageTypeEnum.LIGHT) {
+              return 'light-damage spro-label--attention'
+            } else {
+              return 'no-damage spro-label--accent'
             }
+          }
 
-            const ad_content = get_ads['title'] + ' ' + get_ads['description'];
-            const format_content = reformattedContent(ad_content);
-            // if (get_ads['id']=='1064844990'){
-            //   console.log('format_content', format_content);
-            // }
-
-            // Damage Element Creator
-            const damage_type = is_damage(format_content);
-
-            const damage_class = () => {
-              if (damage_type === damageTypeEnum.SEVERE) {
-                return 'severe-damage spro-label--danger'
-              } else if (damage_type === damageTypeEnum.LIGHT) {
-                return 'light-damage spro-label--attention'
-              } else {
-                return 'no-damage spro-label--accent'
-              }
+          const damage_text = () => {
+            if (damage_type === damageTypeEnum.SEVERE) {
+              return 'Ağır Hasar kaydı var'
+            } else if (damage_type === damageTypeEnum.LIGHT) {
+              return 'Hasar kaydı var'
+            } else {
+              return 'Hasarsız'
             }
+          }
 
-            const damage_text = () => {
-              if (damage_type === damageTypeEnum.SEVERE) {
-                return 'Ağır Hasar kaydı var'
-              } else if (damage_type === damageTypeEnum.LIGHT) {
-                return 'Hasar kaydı var'
-              } else {
-                return 'Hasarsız'
-              }
+          // Painted Element Creator
+          const painted = is_painted(format_content);
+
+          const painted_class = () => {
+            return painted ? 'painted spro-label--attention' : 'not-painted spro-label--accent';
+          }
+
+          const painted_text = () => {
+            return painted ? 'Boyalı' : 'Boyasız';
+          }
+
+          const label_elements = [
+            {
+              'is_show': damage_type > 0,
+              'text': damage_text(),
+              'class': `spro-${damage_class()}`,
+              'html_tag': 'searchResultsTitleValue'
+            },
+            {
+              'is_show': painted,
+              'text': painted_text(),
+              'class': `spro-${painted_class()}`,
+              'html_tag': 'searchResultsTitleValue'
             }
+          ];
 
-            // Painted Element Creator
-            const painted = is_painted(format_content);
-
-            const painted_class = () => {
-              return painted ? 'painted spro-label--attention' : 'not-painted spro-label--accent';
-            }
-
-            const painted_text = () => {
-              return painted ? 'Boyalı' : 'Boyasız';
-            }
-
-            const label_elements = [
-              {
-                'is_show': damage_type > 0,
-                'text': damage_text(),
-                'class': `spro-${damage_class()}`,
-                'html_tag': 'searchResultsTitleValue'
-              },
-              {
-                'is_show': painted,
-                'text': painted_text(),
-                'class': `spro-${painted_class()}`,
-                'html_tag': 'searchResultsTitleValue'
-              }
-            ];
-
-            item.querySelector('.searchResultsTitleValue').innerHTML += `
+          item.querySelector('.searchResultsTitleValue').innerHTML += `
               <div class="spro-featured-labels spro-mt-2"></div>
             `
 
-            for (const label_element of label_elements) {
-              if (label_element.is_show) {
-                item.querySelector(`.spro-featured-labels`).innerHTML += `
+          for (const label_element of label_elements) {
+            if (label_element.is_show) {
+              item.querySelector(`.spro-featured-labels`).innerHTML += `
                   <span class="spro-label ${label_element.class}">${label_element.text}</span>
                 `
-              }
             }
+          }
 
-            const extra_element_names = {
-              'gear': {
-                'name': 'gear',
-                'html_tag': 'searchResultsTagAttributeValue'
-              },
-              'fuel': {
-                'name': 'fuel',
-                'html_tag': 'searchResultsTagAttributeValue'
-              },
-              'engine_power': {
-                'name': 'engine_power',
-                'html_tag': 'searchResultsTagAttributeValue',
-                'text': 'HP'
-              }
+          const extra_element_names = {
+            'gear': {
+              'name': 'gear',
+              'html_tag': 'searchResultsTagAttributeValue'
+            },
+            'fuel': {
+              'name': 'fuel',
+              'html_tag': 'searchResultsTagAttributeValue'
+            },
+            'engine_power': {
+              'name': 'engine_power',
+              'html_tag': 'searchResultsTagAttributeValue',
+              'text': 'HP'
             }
+          }
 
-            for (const extra_element_name in extra_element_names) {
-              if (get_ads[extra_element_names[extra_element_name].name]) {
-                const br_element = document.createElement('br');
-                const has_element = item.querySelector('td.' + extra_element_names[extra_element_name].html_tag);
-                if (has_element) {
-                  has_element.append(br_element);
-                }
+          for (const extra_element_name in extra_element_names) {
+            if (get_ads[extra_element_names[extra_element_name].name]) {
+              const br_element = document.createElement('br');
+              const has_element = item.querySelector('td.' + extra_element_names[extra_element_name].html_tag);
+              if (has_element) {
+                has_element.append(br_element);
+              }
 
-                const extra_element = document.createElement('span');
-                extra_element.setAttribute('class', 'spro-' + extra_element_name);
-                extra_element.innerText = get_ads[extra_element_names[extra_element_name].name];
-                if (extra_element_names[extra_element_name].text) {
-                  extra_element.innerText += ' ' + extra_element_names[extra_element_name].text;
-                }
-                if (has_element) {
-                  has_element.append(extra_element);
-                }
+              const extra_element = document.createElement('span');
+              extra_element.setAttribute('class', 'spro-' + extra_element_name);
+              extra_element.innerText = get_ads[extra_element_names[extra_element_name].name];
+              if (extra_element_names[extra_element_name].text) {
+                extra_element.innerText += ' ' + extra_element_names[extra_element_name].text;
+              }
+              if (has_element) {
+                has_element.append(extra_element);
               }
             }
           }
+
+          makeHide();
         }
+      }
       );
     }
   }
@@ -178,21 +195,45 @@ export async function makeHide() {
   const displayed_ads_ids = await get_ads_displayed();
   const blocked_store_names = await get_blocked_store();
   const ads_element = document.querySelectorAll('tbody.searchResultsRowClass tr');
-
-  options.get({[hideAds]: 0}).then(async r => {
+  
+  options.get({ [hideAds]: 0, [hideSevere]: 0, [ignoredText]: '' }).then(async r => {
+ 
     if (ads_element) {
       for (const item of ads_element) {
+
         const id = item.getAttribute('data-id');
         const store_name = item.getAttribute('data-store_name');
+
+        item.style.display = 'table-row';
+
         if (blocked_store_names.includes(store_name)) {
           item.style.display = 'none';
-        } else {
-          if (displayed_ads_ids.includes(id)) {
-            item.style.display = r[hideAds] ? 'none' : 'table-row';
-          } else {
-            item.style.display = 'table-row';
-          }
         }
+        else if (displayed_ads_ids.includes(id) && r[hideAds]) {
+          item.style.display = 'none';
+        }
+        else if (item.classList.contains("severe-damage") && r[hideSevere]) {
+          item.style.display = 'none';
+        }
+        else {
+
+          item.classList.remove('searchResultsIgnored');
+
+          let ignoredTextValue = r[ignoredText];
+          let itemText = item.innerText.toLowerCase();
+
+          if (ignoredTextValue) {
+            const ignoredTextValueList = ignoredTextValue.split(',');
+            ignoredTextValueList.forEach(element => {
+              if (element.length > 0 && itemText.indexOf(element) != -1) {
+
+                item.classList.add('searchResultsIgnored'); 
+                //item.style.display = 'none';
+                return;
+              }
+            });
+          }
+        } 
       }
     }
   });
